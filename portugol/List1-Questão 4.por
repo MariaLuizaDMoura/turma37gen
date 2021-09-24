@@ -1,6 +1,6 @@
 programa
 {
-	inclua biblioteca Matematica --> math
+	inclua biblioteca Matematica --> math
 	funcao inicio()
 	{
 	real a, b, c, d, r, s
@@ -17,7 +17,7 @@ programa
 		s = (b+c)
 		s = math.potencia(s,2)
 
-		d = r + s /2
+		d = (r + s) /2
 		escreva ("o valor de D é " ,  d)
 	}
 }
@@ -26,7 +26,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 312; 
+ * @POSICAO-CURSOR = 307; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
