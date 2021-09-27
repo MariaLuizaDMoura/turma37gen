@@ -12,11 +12,12 @@ programa{
     }
     senao{
       se(num > 0){
-        escreva("Positivo\n")
+      escreva("Positivo\n")
       }
-      senao{
-        escreva("Igual a zero!\n")
+    senao{
+      escreva("Igual a zero!\n")
       }
+	 escreva("Fim do programa")
     }
   }
 }
@@ -25,7 +26,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 233; 
+ * @POSICAO-CURSOR = 212; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
