@@ -9,11 +9,10 @@ inclua biblioteca Util
 	{
 		
 		inteiro soma=0
-		inteiro jogadas[10]
+		inteiro jogadas[10]/*0-9*/
 		inteiro maior=0
-		inteiro contador=0
-		inteiro totalJogadas=0
-		
+		inteiro contador=0/*Preciso pra saber meu maior valor*/
+		inteiro totalJogadas=0 /*se vai ter média, tem que ter total*/
 		para(inteiro z=0; z<10;z++){
 			jogadas[z] = Util.sorteia(1, 6)/*Lados do dado*/
 			/*Sorteia um número aleatório entre os valores mínimo e máximo especificados*/
@@ -39,7 +38,7 @@ inclua biblioteca Util
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1081; 
+ * @POSICAO-CURSOR = 597; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
