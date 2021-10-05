@@ -8,8 +8,8 @@ public class CadAuxilio {
 	public static void main(String[] args) {
 		
 		//VARIAVEIS
-		Locale.setDefault(Locale.US);
-		Scanner leia = new Scanner(System.in);
+		Locale.setDefault(Locale.US); //usar o padrão americano (teclado)
+		Scanner leia = new Scanner(System.in); // uso apenas quando vai existir interação com o usuário
 		
 		String nome;
 		char pronome;
