@@ -38,10 +38,11 @@ public class CadAuxilio {
 		if (op=='S') {
 			naoOutroAuxilio=false;
 		}
-		System.out.print("Quantidade de filhos : ");
+		System.out.println("Quantidade de filhos : ");
 		filhos = leia.nextInt();
 		
-		if (chefaFamilia && naoOutroAuxilio) {
+		System.out.print("Valor do auxilio: " +(calcAuxilio(chefaFamilia,naoOutroAuxilio)+((naoOutroAuxilio)?(filhos*50):0)));
+		/*if (chefaFamilia && naoOutroAuxilio) {
 			System.out.printf("Ola Sr%c. você irá receber de auxilio R$ %.2f, mais R$ %.2f do(s) filho(s) gerando um total de R$ %.2f.",pronome,(AUXILIO*2),(VALORFILHO*filhos),((AUXILIO*2)+(VALORFILHO*filhos)));
 		}
 		else if(naoOutroAuxilio) {
@@ -49,8 +50,17 @@ public class CadAuxilio {
 		}
 		else {
 			System.out.println("Vc não tem direito ao beneficio!!!");
-		}
+		}*/
 
 	}
-
+	//função calcAuxilio(boolean chefaFamilia)
+	public static double calcAuxilio(boolean chefaFamilia,boolean naoOutroAuxilio) {
+		double auxilio=0.00;
+		if(chefaFamilia) {
+			auxilio = 1200.00;
+		}else if (naoOutroAuxilio) {
+			auxilio = 600.00;
+		}
+		return auxilio;
+	}
 }

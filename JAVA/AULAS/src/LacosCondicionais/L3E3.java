@@ -1,4 +1,4 @@
-package LacosCondicionais2;
+package LacosCondicionais;
 import java.util.Scanner;
 public class L3E3 {
 

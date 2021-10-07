@@ -1,4 +1,4 @@
-package LacosCondicionais2;
+package LacosCondicionais;
 /*Para gerar números aleatório, temos que importar a classe Random, 
 que provém os métodos para gerar números aleatórios*/
 import java.util.Random;

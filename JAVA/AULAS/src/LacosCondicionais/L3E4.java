@@ -1,4 +1,4 @@
-package LacosCondicionais2;
+package LacosCondicionais;
 import java.util.Scanner;
 public class L3E4 {
 
@@ -25,7 +25,7 @@ Scanner leia = new Scanner (System.in);
 				homemAgressivo++;
 			}if((sexo == 3) && (pessoa == 1)){
 				outrosCalmos++;
-			}if ((idade>40) && (pessoa == 2)) {
+			}if ((idade>=40) && (pessoa == 2)) {
 				nervosasMaiorQuarenta++;
 			}if ((idade<18) && (pessoa == 1)) {
 				calmesMenorDezoito++;

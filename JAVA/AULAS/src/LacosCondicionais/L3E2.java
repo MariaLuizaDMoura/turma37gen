@@ -1,7 +1,7 @@
 /*
 * Digite 10 números e informe quantos números pares/ímpares foram digitados.
 */
-package LacosCondicionais2;
+package LacosCondicionais;
 import java.util.Locale;
 import java.util.Scanner;
 
