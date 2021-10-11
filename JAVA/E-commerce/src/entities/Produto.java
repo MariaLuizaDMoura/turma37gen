@@ -1,6 +1,6 @@
 package entities;
 
-public class produto {
+public class Produto {
 
 	// ATRIBUTOS
 		public String codProduto;
@@ -9,7 +9,7 @@ public class produto {
 		public int estoque;
 
 		// CONSTRUTORES
-		public produto(String codProduto, String produto, double preco, int estoque) {
+		public Produto(String codProduto, String produto, double preco, int estoque) {
 			super();
 			this.codProduto = codProduto;
 			this.produto = produto;
