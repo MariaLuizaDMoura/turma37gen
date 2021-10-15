@@ -6,10 +6,12 @@ import java.time.LocalDateTime; //Como manipular datas
 import java.time.format.DateTimeFormatter;
 
 import entities.Produto;
+import entities.Slogan;
 
 public class Projeto {
 
 	public static void main(String[] args) {
+		Slogan s1 = new Slogan(); //instanciar (criar obj)
 
 		DecimalFormat df = new DecimalFormat("#.00");// ARREDONDA VALOR
 		LocalDateTime agora = LocalDateTime.now();// DATA/HORA ATUAL
@@ -48,6 +50,7 @@ public class Projeto {
 
 		// INÍCIO LOOP PROGRAMA
 		do {
+			s1.slogan();
 			System.out.print("\nDeseja fazer uma compra [S/N] ? ");
 			desejaComprar = ler.next().toUpperCase().charAt(0);
 		} while (desejaComprar != 'S' && desejaComprar != 'N');
@@ -60,6 +63,7 @@ public class Projeto {
 			}
 			// ESCOLHE PRODUTO
 			do {// INICIO LAÇO COMPRA
+				s1.slogan();
 				System.out.print("\nSelecione o código do produto : "); // Caso cod errado (linha 144)
 				auxCod = ler.next().toUpperCase();
 				for (int contador = 0; contador < lista.size(); contador++) {
@@ -163,7 +167,7 @@ public class Projeto {
 			// OPÇÕES DE PAGAMENTO
 			opcoesPagamento();
 			System.out.print("\nDigite a opção de pagamento :\n"
-					+ "1 - À VISTA|\t 2 - À VISTA CARTÃO (10% juros) |\t 2x NO CARTÃO (15% juros)");
+					+ "1 - À VISTA|\t 2 - À VISTA CARTÃO (10% juros) |\t 3 - 2x NO CARTÃO (15% juros)");
 			opcao = ler.nextInt();
 			System.out.print("\n");
 
@@ -171,7 +175,7 @@ public class Projeto {
 				System.out.println("Opção inválida, escolha novamente!");
 				opcoesPagamento();
 				System.out.print("\nDigite a opção de pagamento :\n "
-						+ "1 - À VISTA|\t 2 - À VISTA CARTÃO (10% juros) |\t 2x NO CARTÃO (15% juros)");
+						+ "1 - À VISTA|\t 2 - À VISTA CARTÃO (10% juros) |\t 3- 2x NO CARTÃO (15% juros)");
 				opcao = ler.nextInt();
 			}
 			// OPÇÃO 1 - À VISTA
@@ -187,100 +191,74 @@ public class Projeto {
 				System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 0.9));
 				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
 						+ formatterHora.format(agora));
-
-				for (int count = 1; count <= 999999999; count++) {
-					Random randomGenerator = new Random();
-					num_aleatorio = randomGenerator.nextInt(999999999);
-
-				System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e No. " +num_aleatorio+ " do  prestador de servicos: ");
-				System.out.println("Razão Social: WAKANDA STORE LTDA");
-				System.out.println("E-mail: faleconosco@wakandastore.com");
-				System.out.println("CCM : 34.972.128-2");
-				System.out.println("CNPJ: 123.321.111/0001-66");
-				
-				break;
-				
-				}
+				s1.linhaNota();
+				s1.nota();
 
 			}
-			
-			// OPÇÃO 2 - À VISTA CARTÃO
-			if (opcao == 2) {
-				for (Produto escolhido : carrinho) {
-					System.out.print("     " + escolhido.getCodProduto() + " \t\t" + escolhido.getProduto() + "\t\t"
-							+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
-							+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
-				}
-				System.out.println("\nCartão à vista");
-				System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
-				System.out.println("10% de acréscimo : R$ " + df.format(total * 0.1));
-				System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.1));
-				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
-						+ formatterHora.format(agora));
-				for (int count = 1; count <= 999999999; count++) {
-					Random randomGenerator = new Random();
-					num_aleatorio = randomGenerator.nextInt(999999999);
 
-				System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e No. " +num_aleatorio+ " do  prestador de servicos: ");
-				System.out.println("Razão Social: WAKANDA STORE LTDA");
-				System.out.println("E-mail: faleconosco@wakandastore.com");
-				System.out.println("CCM : 34.972.128-2");
-				System.out.println("CNPJ: 123.321.111/0001-66");
-				
-				break;
-				
-				}
-
-			}
-			// OPÇÃO 3 - 2X NO CARTÃO
-			else if (opcao == 3) {
-				for (Produto escolhido : carrinho) {
-					System.out.print("     " + escolhido.getCodProduto() + " \t\t" + escolhido.getProduto() + "\t\t"
-							+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
-							+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
-				}
-
-				System.out.println("\n2X no Cartão");
-				System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
-				System.out.println("15% de acréscimo : R$ " + df.format(total * 0.15));
-				System.out.println("Valor da parcela : R$ " + df.format((total * 1.15) / 2));
-				System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.15));
-				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
-						+ formatterHora.format(agora));
-				for (int count = 1; count <= 999999999; count++) {
-					Random randomGenerator = new Random();
-					num_aleatorio = randomGenerator.nextInt(999999999);
-
-				System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e No. " +num_aleatorio+ " do  prestador de servicos: ");
-				System.out.println("Razão Social: WAKANDA STORE LTDA");
-				System.out.println("E-mail: faleconosco@wakandastore.com");
-				System.out.println("CCM : 34.972.128-2");
-				System.out.println("CNPJ: 123.321.111/0001-66");
-				
-				break;
-				
-				}
-
-			}
-			// ATUALIZA A LISTA DE PRODUTOS APÓS A COMPRA
-			for (int i = 0; i < carrinho.size(); i++) {
-				for (int j = 0; j < lista.size(); j++) {
-					if (lista.get(j).getCodProduto().equals(carrinho.get(i).getCodProduto())) {
-						lista.get(j).setEstoque(lista.get(j).getEstoque() - carrinho.get(i).getEstoque());
-					}
-				}
-			}
-			// ZERA CARRINHO
-			carrinho.clear();
-		} else {
-			// break;
 		}
+
+		// OPÇÃO 2 - À VISTA CARTÃO
+		if (opcao == 2) {
+			for (Produto escolhido : carrinho) {
+				System.out.print("     " + escolhido.getCodProduto() + " \t\t" + escolhido.getProduto() + "\t\t"
+						+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
+						+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
+			}
+			System.out.println("\nCartão à vista");
+			System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
+			System.out.println("10% de acréscimo : R$ " + df.format(total * 0.1));
+			System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.1));
+			System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
+					+ formatterHora.format(agora));
+			s1.linhaNota();
+			s1.nota();
+
+		}
+
+		// OPÇÃO 3 - 2X NO CARTÃO
+		if (opcao == 3) {
+			for (Produto escolhido : carrinho) {
+				System.out.print("     " + escolhido.getCodProduto() + " \t\t" + escolhido.getProduto() + "\t\t"
+						+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
+						+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
+			}
+
+			System.out.println("\n2X no Cartão");
+			System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
+			System.out.println("15% de acréscimo : R$ " + df.format(total * 0.15));
+			System.out.println("Valor da parcela : R$ " + df.format((total * 1.15) / 2));
+			System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.15));
+			System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
+					+ formatterHora.format(agora));
+			s1.linhaNota();
+			s1.nota();
+
+		}
+		// ATUALIZA A LISTA DE PRODUTOS APÓS A COMPRA
+		for (int i = 0; i < carrinho.size(); i++) {
+			for (int j = 0; j < lista.size(); j++) {
+				if (lista.get(j).getCodProduto().equals(carrinho.get(i).getCodProduto())) {
+					lista.get(j).setEstoque(lista.get(j).getEstoque() - carrinho.get(i).getEstoque());
+				}
+			}
+		}
+		// ZERA CARRINHO
+		carrinho.clear();
+		/*
+		 * } else { // break; }
+		 */
 		do {
+
 			System.out.print("Deseja voltar ao site [S/N] ?: ");
 			desejaVoltarParaSite = ler.next().toUpperCase().charAt(0);
 			System.out.println();
 		} while (continua != 'S' && continua != 'N');
 	}
+
+	/*public static void slogan() {
+
+	}*/
 
 	private static void opcoesPagamento() {
 
