@@ -19,7 +19,7 @@ public class Slogan {
 			int num_aleatorio = 0;
 			num_aleatorio = randomGenerator.nextInt(999999999);
 
-			System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e No. "+num_aleatorio + "do  prestador de servicos: ");
+			System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e N°. "+num_aleatorio + " do  prestador de servicos: ");
 			System.out.println("Razão Social: WAKANDA STORE LTDA");
 			System.out.println("E-mail: faleconosco@wakandastore.com");
 			System.out.println("CCM : 34.972.128-2");
