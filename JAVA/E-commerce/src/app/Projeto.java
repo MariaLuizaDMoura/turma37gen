@@ -10,6 +10,9 @@ import entities.Slogan;
 
 public class Projeto {
 
+	@SuppressWarnings("unused")
+	private static final String Keyboard = null;
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		Slogan s1 = new Slogan(); /*instanciar (criar obj)
 									 * A palavra new serve pra instanciar um objeto a partir de
@@ -26,6 +29,8 @@ public class Projeto {
 		 * dd/MM/yyyy para formatar a data e dd/MM/yyyy HH:mm:ss. 
 		 * Baseado no JavaDoc da classe DateTimeFormatter.
 		 */
+	
+		@SuppressWarnings("resource")
 		Scanner ler = new Scanner(System.in);
 		// Para informar que usaremos o teclado, vamos adicionar o parâmetro System.in
 		
@@ -36,7 +41,7 @@ public class Projeto {
 		int auxQuant = 0;
 		char continua = ' ';
 		char desejaComprar = ' ';
-		int pos = -1;
+		int posicao = -1;
 		char altera = ' ';
 		String produtoIgual = "";
 		int posicaoProdutoIgual = 0;
@@ -73,7 +78,7 @@ public class Projeto {
 				auxCod = ler.next().toUpperCase();
 				for (int contador = 0; contador < lista.size(); contador++) {
 					if (lista.get(contador).getCodProduto().equals(auxCod)) {
-						pos = contador;
+						posicao = contador;
 						break;
 					}
 				}
@@ -85,15 +90,16 @@ public class Projeto {
 					}
 				}
 				// TESTE DO PRODUTO REPETIDO
+			
 				if (produtoIgual.equals(auxCod)) {
 					System.out.print("Você já selecionou este código, deseja alterá-lo [S/N] ?");
 					altera = ler.next().toUpperCase().charAt(0);
 					if (altera == 'S') {
 						// DADOS DO PRODUTO ESCOLHIDO
-						System.out.println("CÓDIGO : " + lista.get(pos).getCodProduto());
-						System.out.println("PRODUTO : " + lista.get(pos).getProduto());
-						System.out.println("VALOR : " + lista.get(pos).getPreco());
-						System.out.println("ESTOQUE : " + lista.get(pos).getEstoque());
+						System.out.println("CÓDIGO : " + lista.get(posicao).getCodProduto());
+						System.out.println("PRODUTO : " + lista.get(posicao).getProduto());
+						System.out.println("VALOR : " + lista.get(posicao).getPreco());
+						System.out.println("ESTOQUE : " + lista.get(posicao).getEstoque());
 						System.out.print("\nInforme a nova quantidade : ");
 						auxQuant = ler.nextInt();
 						// VALIDAÇÕES DE QUANTIDADE DO PRODUTO SELECIONADO
@@ -101,9 +107,9 @@ public class Projeto {
 							System.out.println("Impossível realizar, valor negativo!");
 						} else if (auxQuant == 0) {
 							System.out.println("Impossível realizar, nenhuma quantidade foi escolhida.");
-						} else if (lista.get(pos).getEstoque() == 0) {
+						} else if (lista.get(posicao).getEstoque() == 0) {
 							System.out.println("Impossível realizar, produto sem estoque!");
-						} else if (lista.get(pos).getEstoque() < auxQuant) {
+						} else if (lista.get(posicao).getEstoque() < auxQuant) {
 							System.out.print("Impossível realizar, quantidade maior que estoque!");
 						} else {
 							// ATUALIZA e EXIBE CARRINHO
@@ -117,28 +123,39 @@ public class Projeto {
 					}
 					// CASO O PRODUTO NÃO TENHA SIDO SELECIONADO MAIS DE UMA VEZ, ELE VEM DIRETO
 					// PARA CÁ
-				} else if (pos >= 0) {
+				} else if (posicao >= 0) {
 					// DADOS DO PRODUTO ESCOLHIDO
-					System.out.println("CÓDIGO : " + lista.get(pos).getCodProduto());
-					System.out.println("PRODUTO : " + lista.get(pos).getProduto());
-					System.out.println("VALOR : " + lista.get(pos).getPreco());
-					System.out.println("ESTOQUE : " + lista.get(pos).getEstoque());
-					System.out.print("\nDigite a quantidade desejada : ");
-					auxQuant = ler.nextInt();
+					System.out.println("CÓDIGO : " + lista.get(posicao).getCodProduto());
+					System.out.println("PRODUTO : " + lista.get(posicao).getProduto());
+					System.out.println("VALOR : " + lista.get(posicao).getPreco());
+					System.out.println("ESTOQUE : " + lista.get(posicao).getEstoque());
+					//System.out.print("\nDigite a quantidade desejada : ");
+					//auxQuant = ler.nextInt();
 					// VALIDAÇÕES DE QUANTIDADE DO PRODUTO SELECIONADO
-					if (auxQuant < 0) {
+					try {
+						System.out.println("\nDigite a quantidade desejada: ");
+						auxQuant = ler.nextInt();
+						@SuppressWarnings("unused")
+						boolean l1 = false;
+					}
+					catch(InputMismatchException exception) {
+						System.out.println("Erro, digite um número!");
+						ler.nextLine();
+					}
+							
+					if (auxQuant < 0) { 
 
 						System.out.println("Impossível realizar, valor negativo!");
 					} else if (auxQuant == 0) {
 						System.out.println("Impossível realizar, nenhuma quantidade foi escolhida.");
-					} else if (lista.get(pos).getEstoque() == 0) {
+					} else if (lista.get(posicao).getEstoque() == 0) {
 						System.out.println("Impossível realizar, produto sem estoque!");
-					} else if (lista.get(pos).getEstoque() < auxQuant) {
+					} else if (lista.get(posicao).getEstoque() < auxQuant) {
 						System.out.print("Impossível realizar, quantidade maior que estoque!");
 					} else {
 						// ATUALIZA e EXIBE CARRINHO
-						carrinho.add(new Produto(lista.get(pos).getCodProduto(), lista.get(pos).getProduto(),
-								lista.get(pos).getPreco(), auxQuant));
+						carrinho.add(new Produto(lista.get(posicao).getCodProduto(), lista.get(posicao).getProduto(),
+								lista.get(posicao).getPreco(), auxQuant));
 						for (Produto escolhido : carrinho) {
 							System.out.print("     " + escolhido.getCodProduto() + " \t\t" + escolhido.getProduto()
 									+ "\t\t" + escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
@@ -152,6 +169,7 @@ public class Projeto {
 				// PERGUNTA PARA PROSSEGUIR COM A COMPRA
 				System.out.print("\nDeseja continuar a compra [S/N] ? ");
 				continua = ler.next().toUpperCase().charAt(0);
+			
 			} while (continua == 'S');// FIM DO LAÇO COMPRA
 			// EXIBIÇÃO DO CARRINHO FINAL e ATUALIZA ESTOQUE
 			for (Produto escolhido : carrinho) {
@@ -161,8 +179,8 @@ public class Projeto {
 			}
 			// CÁLCULO DO CARRINHO FINAL
 			for (int i = 0; i < carrinho.size(); i++) {
-				pos = i;
-				total += (carrinho.get(pos).getPreco() * carrinho.get(pos).getEstoque());
+				posicao = i;
+				total += (carrinho.get(posicao).getPreco() * carrinho.get(posicao).getEstoque());
 			}
 			// OPÇÕES DE PAGAMENTO
 			//opcoesPagamento();
@@ -187,6 +205,8 @@ public class Projeto {
 							+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
 							+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
 				}
+				s1.linhaNota();
+				s1.nota();
 				System.out.println("\nDinheiro à vista");
 				System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
 				System.out.println("10% de desconto : R$ " + df.format(total * 0.1));
@@ -194,8 +214,7 @@ public class Projeto {
 				System.out.println("\nWakanda Store agradece!\nÉ um prazer ter você conosco a cada momento da jornada DEV!\n");
 				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
 						+ formatterHora.format(agora));
-				s1.linhaNota();
-				s1.nota();
+				
 
 			}
 
@@ -206,15 +225,15 @@ public class Projeto {
 							+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
 							+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
 				}
-
+				s1.linhaNota();
+				s1.nota();
 				System.out.println("\nCartão à vista");
 				System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
 				System.out.println("10% de acréscimo : R$ " + df.format(total * 0.1));
 				System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.1));
 				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
 						+ formatterHora.format(agora));
-				s1.linhaNota();
-				s1.nota();
+				
 			}
 
 			// OPÇÃO 3 - 2X NO CARTÃO
@@ -224,7 +243,8 @@ public class Projeto {
 							+ escolhido.getPreco() + "\t   \t  " + escolhido.getEstoque() + "\t\t"
 							+ escolhido.getEstoque() * escolhido.getPreco() + "\t    \n");
 				}
-
+				s1.linhaNota();
+				s1.nota();
 				System.out.println("\n2X no Cartão");
 				System.out.println("9% de ICMS : R$ " + df.format(total * 0.09));
 				System.out.println("15% de acréscimo : R$ " + df.format(total * 0.15));
@@ -232,8 +252,7 @@ public class Projeto {
 				System.out.println("\nTOTAL DA COMPRA R$ " + df.format(total * 1.15));
 				System.out.print("\n\t\t\t\t\tData de emissão : " + formatterData.format(agora) + "\t    Hora : "
 						+ formatterHora.format(agora));
-				s1.linhaNota();
-				s1.nota();
+			
 
 			}
 			// ATUALIZA A LISTA DE PRODUTOS APÓS A COMPRA
@@ -261,23 +280,19 @@ public class Projeto {
 
 		if (desejaComprar =='N') {
 		System.out.println("\nÉ uma pena, infelizmente não foi dessa vez! \nWakanda Store agradece!\n");
-		System.out.println("Fim de Programa!!");
+		System.out.println("Fim de Programa!");
 		//break;
 		} else {
-			System.out.println("Você digitou algo diferente do que foi pedido!!");
+			System.out.println("\tHorário em Brasília - DF!");
 		}
 		
 	}
-	/*
-	 * public static void slogan() { }
-	 */
+
 
 	private static void opcoesPagamento() {
 
 		char desejaVoltarParaSite = 0;
-		while (desejaVoltarParaSite == 'S')
-			;
-		
-		//System.out.println("\nWakanda Store agradece!\nÉ um prazer ter você conosco a cada momento da jornada DEV!\n");
+		while (desejaVoltarParaSite == 'S');
+		System.out.println("\nWakanda Store agradece!\nÉ um prazer ter você conosco a cada momento da jornada DEV!\n");
 	}
 } 

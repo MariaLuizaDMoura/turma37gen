@@ -12,14 +12,17 @@ public class Slogan {
 		System.out.print("----------------------------------------------------------------------------------|");
 
 	}
+
 	// CABEÇALHO NOTA FISCAL
+	@SuppressWarnings("unused") //Se não quisermos corrigir o aviso, podemos suprimi-lo com a anotação 
 	public static void nota() {
 		for (int count = 1; count <= 999999999; count++) {
 			Random randomGenerator = new Random();
 			int num_aleatorio = 0;
 			num_aleatorio = randomGenerator.nextInt(999999999);
 
-			System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e N°. "+num_aleatorio + " do  prestador de servicos: ");
+			System.out.println("\nNota Fiscal de Servicos Eletronica - NFS-e N°. " + num_aleatorio
+					+ " do  prestador de servicos: ");
 			System.out.println("Razão Social: WAKANDA STORE LTDA");
 			System.out.println("E-mail: faleconosco@wakandastore.com");
 			System.out.println("CCM : 34.972.128-2");
@@ -27,9 +30,11 @@ public class Slogan {
 			break;
 		}
 	}
+
 	// LINHA INFERIOR NOTA
 	public static void linhaNota() {
 		System.out.println(
 				"\n=============================================================================================\n");
 	}
+
 }
