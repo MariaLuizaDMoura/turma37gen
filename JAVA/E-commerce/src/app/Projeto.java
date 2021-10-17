@@ -139,7 +139,7 @@ public class Projeto {
 						boolean l1 = false;
 					}
 					catch(InputMismatchException exception) {
-						System.out.println("Erro, digite um número!");
+						System.out.println("Ops... Você digitou caracteres. Precisamos que digite apenas números!");
 						ler.nextLine();
 					}
 							
