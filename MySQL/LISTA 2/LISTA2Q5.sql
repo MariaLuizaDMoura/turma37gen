@@ -1,37 +1,59 @@
 CREATE DATABASE db_construindo_a_nossa_vida;
 
 USE db_construindo_a_nossa_vida;
-CREATE TABLE tb_categoria (
-    id_categoria INT AUTO_INCREMENT,
-    padrao ENUM ('baixo', 'médio', 'alto') NOT NULL,
-    tipo_modelo ENUM ('unifamiliar', 'multifamiliar'),
-    PRIMARY KEY (id_categoria)
+
+CREATE TABLE tb_categoria
+(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+tipo ENUM ("ALVENARIA", "MADEIRA", "PISOS", "TELHADO", "HIDRÁULICA"),
+origem ENUM ("TIGRE", "POTY", "DELTA", "BRASILIT")
 );
-CREATE TABLE tb_produto (
-    id_produto INT AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    metragem INT NOT NULL,
-    lote VARCHAR(255) NOT NULL,
-    valor DOUBLE NOT NULL,
-    fk_id_categoria INT,
-    PRIMARY KEY (id_produto),
-    FOREIGN KEY (fk_id_categoria) REFERENCES tb_categoria (id_categoria)
-    );
-    INSERT INTO tb_categoria (padrao, tipo_modelo) VALUES 
-	("baixo", "unifamiliar"),
-    ("medio", "unifamiliar"),
-    ("alto", "unifamiliar"),
-	("baixo", "multifamilirar"),
-    ("medio", "multifamilirar"),
-    ("alto", "multifamilirar");
-    
-	INSERT INTO tb_produto (nome, metragem, lote, valor, fk_id_categoria) VALUES
-	("Mirante do Capibaribe", 50,"B1", 120000.00, 1),
-    ("Jardim da Aurora", 80, "M1", 10.00, 1),
-    ("Praça dos Cedros", 120, "M2", 2.00, 1),
-	("Jardins da Ilha", 10, "A1", 12.00, 1),
-    ("Hilson Macedo", 10, "A1", 3.00, 1),
-    ("Jardins da Malu", 10, "P1", 10.00, 1),
-    ("Jardins Morada", 10, "K1", 22.00, 1),
-    ("Jardins Alegre", 10, "G1", 10.00, 2);
-    
+
+CREATE TABLE tb_produto
+(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome VARCHAR(30) NOT NULL,
+preco DOUBLE,
+estoque INT,
+fk_categoria INT,
+FOREIGN KEY (fk_categoria) REFERENCES tb_categoria(id)
+);
+
+INSERT INTO tb_categoria(tipo, origem)
+VALUES("ALVENARIA", "POTY"),
+("MADEIRA", NULL),
+("PISOS", "DELTA"),
+("TELHADO", "BRASILIT"),
+("HIDRÁULICA", "TIGRE");
+
+INSERT INTO tb_produto(nome, preco, estoque, fk_categoria)
+VALUES("Cimento", 70, 25, 1),
+("Linha", 120, 15, 2),
+("Cerâmica", 55, 10, 3),
+("Tijolos", 550, 10000, 1),
+("Telha", 350, 150, 4),
+("Canos", 25, 1000, 5),
+("Luva", 3.50, 250, 5),
+("Conexão de cano", 5, 2000, 5);
+
+SELECT * FROM tb_produto
+WHERE preco > 50;
+
+SELECT * FROM tb_produto
+WHERE preco BETWEEN 3 AND 60;
+
+SELECT * FROM tb_produto
+WHERE nome LIKE 'C%';
+
+-- INNER
+SELECT tb_categoria.tipo, tb_produto.nome
+FROM tb_categoria -- COLUNA ESQUERDA 
+INNER  JOIN tb_produto -- COLUNA DIREITA
+ON tb_categoria.id = tb_produto.fk_categoria;
+
+SELECT tb_categoria.tipo, tb_produto.nome
+FROM tb_categoria -- COLUNA ESQUERDA 
+INNER  JOIN tb_produto -- COLUNA DIREITA
+ON tb_categoria.id = tb_produto.fk_categoria
+WHERE tb_categoria.tipo = "HIDRÁULICA";
+
