@@ -105,4 +105,11 @@ public class Usuario {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
+
+	public boolean isPresent() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }
